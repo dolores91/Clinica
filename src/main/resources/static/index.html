@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Pacientes</title>
+
+    <style>
+
+
+    </style>
+
+</head>
+<body>
+
+<form action="/my-handling-form-page" method="post">
+    <ul>
+        <li>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="user_name">
+        </li>
+        <li>
+            <label for="apellido">Apellido:</label>
+            <input type="apellido" id="apellido" name="user_apellido">
+        </li>
+        <li>
+            <label for="matricula">Matricula:</label>
+            <input id="matricula" name="user_matricula"></input>
+        </li>
+    </ul>
+
+        <button type="submit">Agregar</button>
+
+</form>
+
+</body>
+</html>
