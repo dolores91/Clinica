@@ -3,6 +3,7 @@ package com.example.DoloresAleman_Final.service;
 import com.example.DoloresAleman_Final.Model.DomicilioDTO;
 import com.example.DoloresAleman_Final.Model.OdontologoDTO;
 import com.example.DoloresAleman_Final.controller.OdontologoController;
+import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Domicilio;
 import com.example.DoloresAleman_Final.persistence.entity.Odontologo;
 import com.example.DoloresAleman_Final.persistence.repository.IDomicilioRepository;
@@ -42,6 +43,8 @@ public class OdontologoService {
         return repository.findById(id);
 
     }
+
+
     public List<OdontologoDTO> buscarTodos(){
 
         List<OdontologoDTO> odontologos= new ArrayList<>();

@@ -1,7 +1,23 @@
 package com.example.DoloresAleman_Final;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-class TurnoServiceTest {
+   class TurnoServiceTest {
 
-}
+        @Test
+        void guardar() {
+        }
+
+        @Test
+        void eliminar() {
+        }
+
+        @Test
+        void buscarPorId() {
+        }
+
+        @Test
+        void buscarTodos() {
+        }
+    }
+

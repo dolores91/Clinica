@@ -1,6 +1,7 @@
 package com.example.DoloresAleman_Final.controller;
 
 import com.example.DoloresAleman_Final.Model.PacienteDTO;
+import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Paciente;
 import com.example.DoloresAleman_Final.service.DomicilioService;
 import com.example.DoloresAleman_Final.service.PacienteService;
@@ -10,7 +11,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,15 +39,11 @@ public class PacienteController {
         return respuesta;
     }
 
-    @DeleteMapping("/{id}")
+   /* @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
-
         HttpHeaders responseHeaders = new HttpHeaders();
-
         ResponseEntity<String> response = null;
-
         if (pacienteservice.buscarPorId(id) != null) {
-
             pacienteservice.eliminar(id);
             response = new ResponseEntity<String>("Registro Eliminado ID"+ " " + id, responseHeaders, HttpStatus.OK);
         } else {
@@ -53,8 +52,13 @@ public class PacienteController {
 
         return response;
 
-    }
-
+    }*/
+    //mismo metodo pero con excepciones
+   @DeleteMapping("/{id}")
+   public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
+       pacienteservice.eliminar(id);
+       return ResponseEntity.ok("eliminado");
+   }
 
     @PutMapping("/actualizar")
     public ResponseEntity<String> actualizar(@RequestBody Paciente p){
@@ -76,6 +80,22 @@ public class PacienteController {
         return pacienteservice.buscarPorId(id);
     }
 
+    /*mismo metodo con excepcion
+@GetMapping("/{id}")
+public String buscarPorId(@PathVariable long id){
+    if (id <= 0) {
+        String mensajeError = "No se encuentra ningun archivo con id" + id;
+        throw new ResourceNotFoundException(mensajeError);
+    } else{
+        return pacienteservice.buscarPorId(id)
+    }
+}
+    @ExceptionHandler(Exception.class)
+    private ResponseEntity<?> exception(ResourceNotFoundException ex, WebRequest request)
+        log.error(ex);
+return new ResponseEntity<>("Error manejado por exception Handler", HttpStatus.NOT_FOUND);
+}*/
+
 
     @GetMapping("/ConsultarTodos")
     public ResponseEntity<List<PacienteDTO>> consultarTodos(){
@@ -84,3 +104,4 @@ public class PacienteController {
     }
 
 }
+
