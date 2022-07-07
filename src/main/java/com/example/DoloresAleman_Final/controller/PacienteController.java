@@ -26,11 +26,11 @@ public class PacienteController {
     @Autowired
     DomicilioService domicilioService;
 
-    @PostMapping("/Crear")
-    public ResponseEntity<String> crear(@RequestBody Paciente p){
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registar(@RequestBody Paciente p){
         ResponseEntity<String> respuesta = null;
 
-        if(pacienteservice.guardar(p) != null){
+        if(pacienteservice.registrar(p) != null){
             respuesta = ResponseEntity.ok("El Registro fue creado");
         }else{
             respuesta = ResponseEntity.internalServerError().body("Error");
@@ -64,7 +64,7 @@ public class PacienteController {
     public ResponseEntity<String> actualizar(@RequestBody Paciente p){
         ResponseEntity<String> respuesta = null;
 
-        if(pacienteservice.guardar(p) != null){
+        if(pacienteservice.registrar(p) != null){
             respuesta = ResponseEntity.ok("El Registro fue actualizado con Exito");
         }else{
             respuesta = ResponseEntity.internalServerError().body("Ooops");
@@ -80,24 +80,8 @@ public class PacienteController {
         return pacienteservice.buscarPorId(id);
     }
 
-    /*mismo metodo con excepcion
-@GetMapping("/{id}")
-public String buscarPorId(@PathVariable long id){
-    if (id <= 0) {
-        String mensajeError = "No se encuentra ningun archivo con id" + id;
-        throw new ResourceNotFoundException(mensajeError);
-    } else{
-        return pacienteservice.buscarPorId(id)
-    }
-}
-    @ExceptionHandler(Exception.class)
-    private ResponseEntity<?> exception(ResourceNotFoundException ex, WebRequest request)
-        log.error(ex);
-return new ResponseEntity<>("Error manejado por exception Handler", HttpStatus.NOT_FOUND);
-}*/
 
-
-    @GetMapping("/ConsultarTodos")
+    @GetMapping("/consultarTodos")
     public ResponseEntity<List<PacienteDTO>> consultarTodos(){
 
         return ResponseEntity.ok(pacienteservice.buscarTodos());

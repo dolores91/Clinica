@@ -15,7 +15,8 @@ import java.util.Set;
 public class Paciente {
     protected final static Logger logger = Logger.getLogger(Paciente.class);
     @Id
-    @GeneratedValue//(strategy = GenerationType.SEQUENCE, generator = "pacienteSequence")
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@SequenceGenerator(name = "pacienteSequence", sequenceName = "pacienteSequence", allocationSize = 1)
 
     @Column(name = "id_paciente", nullable = false)
@@ -38,7 +39,7 @@ public class Paciente {
 
 // --------------------------------CONSTRUCTORES-------------------------------------------------
 
-    public Paciente() {
+   /* public Paciente() {
     }
 
     public Paciente(String nombre, String apellido, String email, String dni, Date fechaDeIngreso, Domicilio domicilio, Set<Turno> turnos) {
@@ -49,7 +50,7 @@ public class Paciente {
         this.fechaDeIngreso = fechaDeIngreso;
         this.domicilio = domicilio;
         this.turnos = turnos;
-    }
+    }*/
 // --------------------------------GETTERS AND SETTERS-------------------------------------------------
 
 

@@ -1,6 +1,7 @@
 package com.example.DoloresAleman_Final.controller;
 
 import com.example.DoloresAleman_Final.Model.OdontologoDTO;
+import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Odontologo;
 import com.example.DoloresAleman_Final.persistence.repository.IOdontologoRepository;
 import com.example.DoloresAleman_Final.service.OdontologoService;
@@ -23,11 +24,11 @@ public class OdontologoController {
     OdontologoService odontologoService;
 
 
-    @PostMapping("/Crear")
-    public ResponseEntity<String> crear(@RequestBody Odontologo o){
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrar(@RequestBody Odontologo o){
         ResponseEntity<String> respuesta = null;
 
-        if(odontologoService.guardar(o) != null){
+        if(odontologoService.registrar(o) != null){
             respuesta = ResponseEntity.ok("El Registro fue creado");
         }else{
             respuesta = ResponseEntity.internalServerError().body("Error");
@@ -36,30 +37,18 @@ public class OdontologoController {
         return respuesta;
     }
 
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminar(@PathVariable Long id) {
-
-        HttpHeaders responseHeaders = new HttpHeaders();
-
-        ResponseEntity<String> response = null;
-
-        if (odontologoService.buscarPorId(id) != null) {
-
-            odontologoService.eliminar(id);
-            response = new ResponseEntity<String>("Registro Eliminado ID"+ " " + id, responseHeaders, HttpStatus.OK);
-        } else {
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-
-        return response;
-
+    public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
+        odontologoService.eliminar(id);
+        return ResponseEntity.ok("eliminado");
     }
 
     @PutMapping("/actualizar")
     public ResponseEntity<String> actualizar(@RequestBody Odontologo o){
         ResponseEntity<String> respuesta = null;
 
-        if(odontologoService.guardar(o) != null){
+        if(odontologoService.registrar(o) != null){
             respuesta = ResponseEntity.ok("El Registro fue actualizado");
         }else{
             respuesta = ResponseEntity.internalServerError().body("Error");
@@ -76,7 +65,7 @@ public class OdontologoController {
     }
 
 
-    @GetMapping("/ConsultarTodos")
+    @GetMapping("/consultarTodos")
     public ResponseEntity<List<OdontologoDTO>> consultarTodos(){
 
         return ResponseEntity.ok(odontologoService.buscarTodos());

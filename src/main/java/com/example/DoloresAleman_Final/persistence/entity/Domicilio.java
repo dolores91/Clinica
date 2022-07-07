@@ -10,7 +10,8 @@ import javax.persistence.*;
 public class Domicilio {
     protected final static Logger logger = Logger.getLogger(Domicilio.class);
     @Id
-    @GeneratedValue
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
   //  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "domicilioSecuence")
   //  @SequenceGenerator(name = "domicilioSecuence", sequenceName = "domicilioSecuence", allocationSize = 1)
 
@@ -27,7 +28,7 @@ public class Domicilio {
 
 // --------------------------------CONSTRUCTORES-------------------------------------------------
 
-    public Domicilio(Long id) {
+    /*public Domicilio(Long id) {
     }
 
     public Domicilio(String calle, String numero, String localidad, String provincia) {
@@ -35,7 +36,7 @@ public class Domicilio {
         this.numero = numero;
         this.localidad = localidad;
         this.provincia = provincia;
-    }
+    }*/
 // --------------------------------GETTERS AND SETTERS-------------------------------------------------
 
     public Long getId() {

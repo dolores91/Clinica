@@ -3,6 +3,7 @@ package com.example.DoloresAleman_Final.service;
 import com.example.DoloresAleman_Final.Model.PacienteDTO;
 import com.example.DoloresAleman_Final.Model.TurnoDTO;
 import com.example.DoloresAleman_Final.controller.OdontologoController;
+import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Paciente;
 import com.example.DoloresAleman_Final.persistence.entity.Turno;
 import com.example.DoloresAleman_Final.persistence.repository.IPacienteRepository;
@@ -24,7 +25,7 @@ public class TurnoService {
     ObjectMapper mapper;
 
 
-    public String guardar(Turno t){
+    public String registrar(Turno t){
         String respuesta = null;
         if (repository.save(t) != null){
             respuesta = "ok";
@@ -32,15 +33,16 @@ public class TurnoService {
         return respuesta;
     }
 
-    public void eliminar(Long id){
-        repository.deleteById(id);
-    }
 
     public Optional<Turno> buscarPorId(Long id){
 
         return repository.findById(id);
     }
-
+    public void eliminar(Long id) throws ResourceNotFoundException {
+        if (buscarPorId(id) == null)
+            throw new ResourceNotFoundException("no existe un domicilio con id: " + id);
+        repository.deleteById(id);
+    }
     public List<TurnoDTO> buscarTodos(){
 
         List<TurnoDTO> turnos = new ArrayList<>();
@@ -49,5 +51,8 @@ public class TurnoService {
             turnos.add(mapper.convertValue(turno, TurnoDTO.class));
         }
         return turnos;
+    }
+    public Turno actualizar(Turno turno) {
+        return repository.save(turno);
     }
 }

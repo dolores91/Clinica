@@ -26,7 +26,7 @@ public class OdontologoService {
 
 
 
-    public String guardar(Odontologo o){
+    public String registrar(Odontologo o){
         String respuesta = null;
         if (repository.save(o) != null){
             respuesta = "ok";
@@ -34,9 +34,7 @@ public class OdontologoService {
         return respuesta;
     }
 
-    public void eliminar(Long id){
-        repository.deleteById(id);
-    }
+
 
     public Optional<Odontologo> buscarPorId(Long id){
 
@@ -44,6 +42,11 @@ public class OdontologoService {
 
     }
 
+    public void eliminar(Long id) throws ResourceNotFoundException {
+        if (buscarPorId(id) == null)
+            throw new ResourceNotFoundException("no existe un domicilio con id: " + id);
+        repository.deleteById(id);
+    }
 
     public List<OdontologoDTO> buscarTodos(){
 
@@ -54,5 +57,8 @@ public class OdontologoService {
         }
 
         return odontologos;
+    }
+    public Odontologo actualizar(Odontologo odontologo) {
+        return repository.save(odontologo);
     }
 }

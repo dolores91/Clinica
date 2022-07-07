@@ -21,11 +21,11 @@ class OdontologoServiceTest {
     @Test
     public void testGuardarOdontologo(){
 
-    Odontologo odontologo = new Odontologo ("Juan","Martinez","1");
+    Odontologo odontologo = new Odontologo ();
     odontologo.setApellido("Martinez");
     odontologo.setNombre("Juan");
     odontologo.setMatricula("124");
-    odontologoService.guardar(odontologo);
+    odontologoService.registrar(odontologo);
 
     //Odontologo odontologoJuan = odontologoService.buscarPorId(1L);
     //assertTrue(odontologoJuan !=null);

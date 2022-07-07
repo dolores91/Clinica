@@ -21,9 +21,9 @@ class PacienteServiceTest {
     private DomicilioService domicilioService;
 
     public void cargarDataSet() {
-        Domicilio domicilio = new Domicilio("Av Santa fe", "444", "CABA", "Buenos Aires");
+      //  Domicilio domicilio = new Domicilio("Av Santa fe", "444", "CABA", "Buenos Aires");
         //Paciente p = pacienteService.guardar(new Paciente("Santiago", "Paz", "88888888", new Date(), domicilio));
-        Domicilio domicilio1 = new Domicilio("Av Avellaneda", "333", "CABA", "Buenos Aires");
+       // Domicilio domicilio1 = new Domicilio("Av Avellaneda", "333", "CABA", "Buenos Aires");
         //Paciente p1 = pacienteService.guardar(new Paciente("Micaela", "Perez", "99999999", new Date(), domicilio));
 
     }
@@ -31,7 +31,7 @@ class PacienteServiceTest {
     @Test
     public void agregarYBuscarPacienteTest() {
         this.cargarDataSet();
-        Domicilio domicilio = new Domicilio("Calle", "123", "Temperley", "Buenos Aires");
+      //  Domicilio domicilio = new Domicilio("Calle", "123", "Temperley", "Buenos Aires");
        // Paciente p = pacienteService.guardar(new Paciente("Tomas", "Pereyra", "12345678", new Date(), domicilio));
 
        // Assert.assertNotNull(pacienteService.buscarPorId(p.getId()));

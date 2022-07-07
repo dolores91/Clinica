@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-
-    <title>Pacientes</title>
-
-    <style>
-
-
-    </style>
-
+    <title>Odontologos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/post_students.js"></script>
 </head>
 <body>
-
-<form action="/my-handling-form-page" method="post">
-    <ul>
-        <li>
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="user_name">
-        </li>
-        <li>
-            <label for="apellido">Apellido:</label>
-            <input type="apellido" id="apellido" name="user_apellido">
-        </li>
-        <li>
-            <label for="matricula">Matricula:</label>
-            <input id="matricula" name="user_matricula"></input>
+<div class="container">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="/list.html">Listado odontologos</a>
+            <a class="nav-link" href="/post.html">Alta odontologos</a>
         </li>
     </ul>
 
-        <button type="submit">Agregar</button>
-
-</form>
-
+    <hr>
+</div>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class PacienteService {
     ObjectMapper mapper;
 
 
-    public String guardar(Paciente p) {
+    public String registrar(Paciente p) {
         String respuesta = null;
         if (repository.save(p) != null) {
             respuesta = "ok";
@@ -57,5 +57,8 @@ public class PacienteService {
             }
             return pacientes;
         }
+    public Paciente actualizar(Paciente paciente) {
+        return repository.save(paciente);
+    }
     }
 

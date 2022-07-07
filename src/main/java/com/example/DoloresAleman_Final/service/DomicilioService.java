@@ -2,6 +2,7 @@ package com.example.DoloresAleman_Final.service;
 
 import com.example.DoloresAleman_Final.Model.DomicilioDTO;
 import com.example.DoloresAleman_Final.controller.OdontologoController;
+import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Domicilio;
 import com.example.DoloresAleman_Final.persistence.repository.IDomicilioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +25,7 @@ public class DomicilioService {
     ObjectMapper mapper;
 
 
-    public String guardar(Domicilio d){
+    public String registar(Domicilio d){
         String respuesta = null;
         if (repository.save(d) != null){
             respuesta = "ok";
@@ -37,9 +38,6 @@ public class DomicilioService {
         repository.save(domicilio);
     }*/
 
-    public void eliminar(Long id){
-        repository.deleteById(id);
-    }
 
                                   //ver el otro 3 min12
     public Optional<Domicilio> buscarPorId(Long id){
@@ -56,6 +54,15 @@ public class DomicilioService {
         }
 
         return domicilios;
+    }
+
+    public void eliminar(Long id) throws ResourceNotFoundException {
+        if (buscarPorId(id) == null)
+            throw new ResourceNotFoundException("no existe un domicilio con id: " + id);
+        repository.deleteById(id);
+    }
+    public Domicilio actualizar(Domicilio domicilio) {
+        return repository.save(domicilio);
     }
 
 

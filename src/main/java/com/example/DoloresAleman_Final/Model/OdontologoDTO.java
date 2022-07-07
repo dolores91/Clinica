@@ -6,6 +6,14 @@ public class OdontologoDTO {
     private String apellido;
     private String matricula;
 
+    public OdontologoDTO(Long id) {
+    }
+
+    public OdontologoDTO(String nombre, String apellido, String matricula) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.matricula = matricula;
+    }
 
     public Long getId() {
         return id;
