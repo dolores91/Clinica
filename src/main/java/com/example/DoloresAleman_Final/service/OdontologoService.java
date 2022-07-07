@@ -34,7 +34,13 @@ public class OdontologoService {
         return respuesta;
     }
 
-    public void eliminar(Long id){
+   /* public void eliminar(Long id){
+        repository.deleteById(id);
+    }*/
+    //mismo metodo pero con excepciones
+    public void eliminar(Long id) throws ResourceNotFoundException {
+        if (buscarPorId(id) == null)
+            throw new ResourceNotFoundException("no existe un odontologo con id: " + id);
         repository.deleteById(id);
     }
 
@@ -45,14 +51,14 @@ public class OdontologoService {
     }
 
 
-    public List<OdontologoDTO> buscarTodos(){
+    public List<Odontologo>buscarTodos(){
 
-        List<OdontologoDTO> odontologos= new ArrayList<>();
+       // List<OdontologoDTO> odontologos= new ArrayList<>();
+       // logger.info(repository.findAll());
+       // for(Odontologo odontologo: repository.findAll()){
+       //     odontologos.add(mapper.convertValue(odontologo, OdontologoDTO.class));
+       // }
 
-        for(Odontologo odontologo: repository.findAll()){
-            odontologos.add(mapper.convertValue(odontologo, OdontologoDTO.class));
-        }
-
-        return odontologos;
+        return repository.findAll();
     }
 }

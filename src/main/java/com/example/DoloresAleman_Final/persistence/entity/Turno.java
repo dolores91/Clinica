@@ -10,8 +10,7 @@ import java.sql.Date;
 public class Turno {
     protected final static Logger logger = Logger.getLogger(Turno.class);
     @Id
-    @GeneratedValue //(strategy = GenerationType.SEQUENCE, generator = "turnoSequence")
-    //@SequenceGenerator(name = "turnoSequence", sequenceName = "turnoSequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id_turno", nullable = false)
     private Long id;
@@ -27,7 +26,7 @@ public class Turno {
     private Paciente paciente;
 
 // --------------------------------CONSTRUCTORES-------------------------------------------------
-
+/*
     public Turno() {
     }
 
@@ -35,16 +34,16 @@ public class Turno {
         this.date = date;
         this.odontologo = odontologo;
         this.paciente = paciente;
-    }
+    }*/
     // --------------------------------GETTERS AND SETTERS-------------------------------------------------
 
     public Long getId() {
         return id;
     }
 
-    //public void setId(Long id) {
-    //    this.id = id;
-    //}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Date getDate() {
         return date;

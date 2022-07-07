@@ -1,6 +1,7 @@
 package com.example.DoloresAleman_Final.controller;
 
 import com.example.DoloresAleman_Final.Model.DomicilioDTO;
+import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Domicilio;
 import com.example.DoloresAleman_Final.service.DomicilioService;
 import com.example.DoloresAleman_Final.service.OdontologoService;
@@ -22,7 +23,7 @@ public class DomicilioController {
     @Autowired
     DomicilioService domicilioService;
 
-    @PostMapping("/Crear")
+    @PostMapping("/crear")
     public ResponseEntity<String> crear(@RequestBody Domicilio d){
         ResponseEntity<String> respuesta = null;
 
@@ -34,7 +35,7 @@ public class DomicilioController {
 
         return respuesta;
     }
-
+/*
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
 
@@ -52,7 +53,13 @@ public class DomicilioController {
 
         return response;
 
-    }
+    }*/
+//mismo metodo pero con excepciones
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
+    domicilioService.eliminar(id);
+    return ResponseEntity.ok("eliminado");
+}
 
     @PutMapping("/actualizar")
     public ResponseEntity<String> actualizar(@RequestBody Domicilio d){
@@ -73,7 +80,7 @@ public class DomicilioController {
         return domicilioService.buscarPorId(id);
     }
 
-    @GetMapping("/ConsultarTodos")
+    @GetMapping("/consultarTodos")
     public ResponseEntity<List<DomicilioDTO>> consultarTodos() {
 
         return ResponseEntity.ok(domicilioService.buscarTodos());

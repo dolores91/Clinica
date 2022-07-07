@@ -21,7 +21,7 @@ class OdontologoServiceTest {
     @Test
     public void testGuardarOdontologo(){
 
-    Odontologo odontologo = new Odontologo ("Juan","Martinez","1");
+    Odontologo odontologo = new Odontologo();
     odontologo.setApellido("Martinez");
     odontologo.setNombre("Juan");
     odontologo.setMatricula("124");

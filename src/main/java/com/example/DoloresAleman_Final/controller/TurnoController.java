@@ -1,6 +1,7 @@
 package com.example.DoloresAleman_Final.controller;
 
 import com.example.DoloresAleman_Final.Model.TurnoDTO;
+import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Turno;
 import com.example.DoloresAleman_Final.service.TurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class TurnoController {
     private TurnoService turnoService;
 
 
-    @PostMapping("/Crear")
+    @PostMapping("/crear")
     public ResponseEntity<String> crear(@RequestBody Turno t){
         ResponseEntity<String> respuesta = null;
 
@@ -32,7 +33,7 @@ public class TurnoController {
 
         return respuesta;
     }
-
+/*
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
 
@@ -50,7 +51,13 @@ public class TurnoController {
 
         return response;
 
-    }
+    }*/
+//mismo metodo pero con excepciones
+@DeleteMapping("/{id}")
+public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
+    turnoService.eliminar(id);
+    return ResponseEntity.ok("eliminado");
+}
 
     @PutMapping("/actualizar")
     public ResponseEntity<String> actualizar(@RequestBody Turno t){
@@ -73,7 +80,7 @@ public class TurnoController {
     }
 
 
-    @GetMapping("/ConsultarTodos")
+    @GetMapping("/consultarTodos")
     public ResponseEntity<List<TurnoDTO>> consultarTodos(){
 
         return ResponseEntity.ok(turnoService.buscarTodos());

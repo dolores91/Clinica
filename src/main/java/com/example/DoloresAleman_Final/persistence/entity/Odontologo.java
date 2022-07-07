@@ -12,11 +12,9 @@ import java.util.Set;
 public class Odontologo {
     protected final static Logger logger = Logger.getLogger(Odontologo.class);
     @Id
-    @GeneratedValue
-   // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "odontologoSequence")
-   // @SequenceGenerator(name = "odontologoSequence", sequenceName = "odontologoSequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "id_odontologo", nullable = false)
+   @Column(name = "id_odontologo", nullable = false)
     private Long id;
 
     private String nombre;
@@ -27,23 +25,23 @@ public class Odontologo {
     @JsonIgnore
     private Set<Turno> turnos = new HashSet<>();
 // --------------------------------CONSTRUCTORES-------------------------------------------------
-    public Odontologo(Long id) {
+  /*  public Odontologo(Long id) {
     }
 
     public Odontologo(String nombre, String apellido, String matricula) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.matricula = matricula;
-    }
+    }*/
     // --------------------------------GETTERS AND SETTERS-------------------------------------------------
 
     public Long getId() {
         return id;
     }
 
-  //  public void setId(Long id) {
-  //      this.id = id;
-  //  }
+    public void setId(Long id) {
+       this.id = id;
+    }
 
     public String getNombre() {
         return nombre;

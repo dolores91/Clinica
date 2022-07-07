@@ -15,8 +15,7 @@ import java.util.Set;
 public class Paciente {
     protected final static Logger logger = Logger.getLogger(Paciente.class);
     @Id
-    @GeneratedValue//(strategy = GenerationType.SEQUENCE, generator = "pacienteSequence")
-    //@SequenceGenerator(name = "pacienteSequence", sequenceName = "pacienteSequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id_paciente", nullable = false)
     private Long id;
@@ -37,7 +36,7 @@ public class Paciente {
 
 
 // --------------------------------CONSTRUCTORES-------------------------------------------------
-
+/*
     public Paciente() {
     }
 
@@ -49,7 +48,7 @@ public class Paciente {
         this.fechaDeIngreso = fechaDeIngreso;
         this.domicilio = domicilio;
         this.turnos = turnos;
-    }
+    }*/
 // --------------------------------GETTERS AND SETTERS-------------------------------------------------
 
 
@@ -58,9 +57,9 @@ public class Paciente {
         return id;
     }
 
-   // public void setId(Long id) {
-   //     this.id = id;
-   // }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;

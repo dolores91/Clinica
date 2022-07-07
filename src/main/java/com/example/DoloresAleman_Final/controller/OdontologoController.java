@@ -1,6 +1,7 @@
 package com.example.DoloresAleman_Final.controller;
 
 import com.example.DoloresAleman_Final.Model.OdontologoDTO;
+import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Odontologo;
 import com.example.DoloresAleman_Final.persistence.repository.IOdontologoRepository;
 import com.example.DoloresAleman_Final.service.OdontologoService;
@@ -23,7 +24,7 @@ public class OdontologoController {
     OdontologoService odontologoService;
 
 
-    @PostMapping("/Crear")
+    @PostMapping("/crear")
     public ResponseEntity<String> crear(@RequestBody Odontologo o){
         ResponseEntity<String> respuesta = null;
 
@@ -35,7 +36,7 @@ public class OdontologoController {
 
         return respuesta;
     }
-
+/*
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id) {
 
@@ -53,6 +54,12 @@ public class OdontologoController {
 
         return response;
 
+    }*/
+    //mismo metodo pero con excepciones
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
+        odontologoService.eliminar(id);
+        return ResponseEntity.ok("eliminado");
     }
 
     @PutMapping("/actualizar")
@@ -76,8 +83,8 @@ public class OdontologoController {
     }
 
 
-    @GetMapping("/ConsultarTodos")
-    public ResponseEntity<List<OdontologoDTO>> consultarTodos(){
+    @GetMapping("/consultarTodos")
+    public ResponseEntity<List<Odontologo>> consultarTodos(){
 
         return ResponseEntity.ok(odontologoService.buscarTodos());
     }

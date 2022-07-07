@@ -26,7 +26,7 @@ public class PacienteController {
     @Autowired
     DomicilioService domicilioService;
 
-    @PostMapping("/Crear")
+    @PostMapping("/crear")
     public ResponseEntity<String> crear(@RequestBody Paciente p){
         ResponseEntity<String> respuesta = null;
 
@@ -97,7 +97,7 @@ return new ResponseEntity<>("Error manejado por exception Handler", HttpStatus.N
 }*/
 
 
-    @GetMapping("/ConsultarTodos")
+    @GetMapping("/consultarTodos")
     public ResponseEntity<List<PacienteDTO>> consultarTodos(){
 
         return ResponseEntity.ok(pacienteservice.buscarTodos());
