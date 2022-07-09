@@ -1,13 +1,12 @@
 package com.example.DoloresAleman_Final.Model;
 //en este proyecto podrian obviarse los DTO
+
 public class Domicilio {
     private Long id;
     private String calle;
     private String numero;
     private String localidad;
     private String provincia;
-
-
 
 
     public Long getId() {

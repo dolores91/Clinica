@@ -1,7 +1,5 @@
 package com.example.DoloresAleman_Final.service;
-
 import com.example.DoloresAleman_Final.Model.DomicilioDTO;
-import com.example.DoloresAleman_Final.controller.OdontologoController;
 import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Domicilio;
 import com.example.DoloresAleman_Final.persistence.repository.IDomicilioRepository;
@@ -9,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +18,7 @@ public class DomicilioService {
     protected final static Logger logger = Logger.getLogger(DomicilioService.class);
     @Autowired
     private IDomicilioRepository repository;
-    @Autowired                                           //esto estaba distinto
+    @Autowired
     ObjectMapper mapper;
 
 
@@ -32,14 +29,7 @@ public class DomicilioService {
         }
         return respuesta;
     }
-/*ver si funciona este->
-    public void guardar(DomicilioDTO domicilioDTO){
-        Domicilio domicilio = mapper.convertValue(domicilioDTO, Domicilio.class);
-        repository.save(domicilio);
-    }*/
 
-
-                                  //ver el otro 3 min12
     public Optional<Domicilio> buscarPorId(Long id){
 
         return repository.findById(id);

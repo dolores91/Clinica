@@ -1,10 +1,8 @@
 package com.example.DoloresAleman_Final.persistence.entity;
-
-import com.example.DoloresAleman_Final.controller.OdontologoController;
 import org.apache.log4j.Logger;
-
 import javax.persistence.*;
 import java.sql.Date;
+
 @Entity
 @Table (name="turnos")
 public class Turno {
@@ -12,7 +10,6 @@ public class Turno {
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@SequenceGenerator(name = "turnoSequence", sequenceName = "turnoSequence", allocationSize = 1)
 
     @Column(name = "id_turno", nullable = false)
     private Long id;

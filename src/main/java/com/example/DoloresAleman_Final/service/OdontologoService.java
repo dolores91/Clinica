@@ -1,21 +1,15 @@
 package com.example.DoloresAleman_Final.service;
-
-import com.example.DoloresAleman_Final.Model.DomicilioDTO;
 import com.example.DoloresAleman_Final.Model.OdontologoDTO;
-import com.example.DoloresAleman_Final.controller.OdontologoController;
 import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
-import com.example.DoloresAleman_Final.persistence.entity.Domicilio;
 import com.example.DoloresAleman_Final.persistence.entity.Odontologo;
-import com.example.DoloresAleman_Final.persistence.repository.IDomicilioRepository;
 import com.example.DoloresAleman_Final.persistence.repository.IOdontologoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class OdontologoService {
     protected final static Logger logger = Logger.getLogger(OdontologoService.class);
@@ -23,8 +17,6 @@ public class OdontologoService {
     private IOdontologoRepository repository;
     @Autowired
     ObjectMapper mapper;
-
-
 
     public String registrar(Odontologo o){
         String respuesta = null;
@@ -34,13 +26,21 @@ public class OdontologoService {
         return respuesta;
     }
 
-
-
-    public Optional<Odontologo> buscarPorId(Long id){
+    /*public Optional<Odontologo> buscarPorId(Long id){
 
         return repository.findById(id);
 
+    }*/
+    //mismo metodo pero con excepciones
+    public Odontologo buscarPorId(Long id) throws ResourceNotFoundException{
+        Odontologo odontologo = repository.findById(id).orElse(null);
+        if (odontologo != null){
+            return odontologo;
+        } else {
+            throw new ResourceNotFoundException ("No fue encontrado el odontologo con id " + id);
+        }
     }
+
 
     public void eliminar(Long id) throws ResourceNotFoundException {
         if (buscarPorId(id) == null)

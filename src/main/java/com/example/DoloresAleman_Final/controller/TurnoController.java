@@ -1,17 +1,13 @@
 package com.example.DoloresAleman_Final.controller;
-
 import com.example.DoloresAleman_Final.Model.TurnoDTO;
+import com.example.DoloresAleman_Final.exceptions.BadRequestException;
 import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Turno;
 import com.example.DoloresAleman_Final.service.TurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/turnos")
@@ -19,7 +15,6 @@ public class TurnoController {
 
     @Autowired
     private TurnoService turnoService;
-
 
     @PostMapping("/registrar")
     public ResponseEntity<String> registrar(@RequestBody Turno t){
@@ -33,7 +28,6 @@ public class TurnoController {
 
         return respuesta;
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
@@ -54,13 +48,16 @@ public class TurnoController {
         return respuesta;
     }
 
-
-    @GetMapping("/{id}")
+   /* @GetMapping("/{id}")
     public Optional<Turno> buscarPorId(@PathVariable Long id){
 
         return turnoService.buscarPorId(id);
+    }*/
+    //mismo metodo pero con excepciones
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorId(Long id) throws ResourceNotFoundException, BadRequestException {
+        return ResponseEntity.ok(turnoService.buscarPorId(id));
     }
-
 
     @GetMapping("/consultarTodos")
     public ResponseEntity<List<TurnoDTO>> consultarTodos(){

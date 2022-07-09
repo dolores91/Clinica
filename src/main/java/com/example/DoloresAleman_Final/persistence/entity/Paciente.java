@@ -1,9 +1,6 @@
 package com.example.DoloresAleman_Final.persistence.entity;
-
-import com.example.DoloresAleman_Final.controller.OdontologoController;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.log4j.Logger;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -17,7 +14,7 @@ public class Paciente {
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@SequenceGenerator(name = "pacienteSequence", sequenceName = "pacienteSequence", allocationSize = 1)
+
 
     @Column(name = "id_paciente", nullable = false)
     private Long id;

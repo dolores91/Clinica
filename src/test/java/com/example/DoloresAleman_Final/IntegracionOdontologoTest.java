@@ -1,9 +1,7 @@
 package com.example.DoloresAleman_Final;
 
-
-
-import com.example.DoloresAleman_Final.Model.Odontologo;
 import com.example.DoloresAleman_Final.Model.OdontologoDTO;
+import com.example.DoloresAleman_Final.controller.OdontologoController;
 import com.example.DoloresAleman_Final.util.Jsons;
 import org.junit.Assert;
 import org.junit.Test;
@@ -19,7 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 public class IntegracionOdontologoTest {
@@ -30,12 +28,15 @@ public class IntegracionOdontologoTest {
     @Test
     public void registrar() throws Exception {
         OdontologoDTO od = new OdontologoDTO("dolores", "aleman", "436");
-        MvcResult response = this.mockMvc.perform(MockMvcRequestBuilders.post("/odontologos")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(Jsons.asJsonString(od)))
+        MvcResult response = this.mockMvc.perform(MockMvcRequestBuilders.post("/odontologos/registrar")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(Jsons.asJsonString(od)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 
         Assert.assertFalse(response.getResponse().getContentAsString().isEmpty());
     }
+
+
 }
+//hacer lo mismo con otro status o sea q de error

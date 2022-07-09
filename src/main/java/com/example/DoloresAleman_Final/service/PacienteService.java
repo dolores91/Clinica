@@ -1,21 +1,16 @@
 package com.example.DoloresAleman_Final.service;
-
-import com.example.DoloresAleman_Final.Model.DomicilioDTO;
 import com.example.DoloresAleman_Final.Model.PacienteDTO;
-import com.example.DoloresAleman_Final.controller.OdontologoController;
 import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
-import com.example.DoloresAleman_Final.persistence.entity.Domicilio;
 import com.example.DoloresAleman_Final.persistence.entity.Paciente;
-import com.example.DoloresAleman_Final.persistence.repository.IOdontologoRepository;
 import com.example.DoloresAleman_Final.persistence.repository.IPacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+
 @Service
 public class PacienteService {
     protected final static Logger logger = Logger.getLogger(PacienteService.class);
@@ -33,9 +28,18 @@ public class PacienteService {
         return respuesta;
     }
 
-    public Optional<Paciente> buscarPorId(Long id) {
+   /* public Optional<Paciente> buscarPorId(Long id) {
 
         return repository.findById(id);
+    }*/
+   //mismo metodo pero con excepciones
+    public Paciente buscarPorId(Long id) throws ResourceNotFoundException {
+        Paciente paciente = repository.findById(id).orElse(null);
+        if (paciente != null){
+            return paciente;
+        } else {
+            throw new ResourceNotFoundException ("No fue encontrado el odontologo con id " + id);
+        }
     }
 
     /*public void eliminar(Long id){

@@ -1,17 +1,12 @@
 package com.example.DoloresAleman_Final.controller;
-
 import com.example.DoloresAleman_Final.Model.DomicilioDTO;
 import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Domicilio;
 import com.example.DoloresAleman_Final.service.DomicilioService;
-import com.example.DoloresAleman_Final.service.OdontologoService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +31,6 @@ public class DomicilioController {
         return respuesta;
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
         domicilioService.eliminar(id);
@@ -55,8 +49,6 @@ public class DomicilioController {
 
         return respuesta;
     }
-
-
     @GetMapping("/{id}")
     public Optional<Domicilio> buscarPorId(@PathVariable Long id){
 

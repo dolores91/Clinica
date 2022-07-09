@@ -12,8 +12,7 @@ public class Domicilio {
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-  //  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "domicilioSecuence")
-  //  @SequenceGenerator(name = "domicilioSecuence", sequenceName = "domicilioSecuence", allocationSize = 1)
+
 
     @Column(name = "id_domicilio", nullable = false)
     private Long id;

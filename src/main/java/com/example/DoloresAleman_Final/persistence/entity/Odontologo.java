@@ -1,5 +1,4 @@
 package com.example.DoloresAleman_Final.persistence.entity;
-import com.example.DoloresAleman_Final.controller.OdontologoController;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.log4j.Logger;
 
@@ -14,8 +13,7 @@ public class Odontologo {
     @Id
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "odontologoSequence")
-   // @SequenceGenerator(name = "odontologoSequence", sequenceName = "odontologoSequence", allocationSize = 1)
+
 
     @Column(name = "id_odontologo", nullable = false)
     private Long id;

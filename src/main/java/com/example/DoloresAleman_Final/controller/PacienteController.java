@@ -7,22 +7,16 @@ import com.example.DoloresAleman_Final.service.DomicilioService;
 import com.example.DoloresAleman_Final.service.PacienteService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
     protected final static Logger logger = Logger.getLogger(PacienteController.class);
     @Autowired
-    PacienteService pacienteservice;
+    PacienteService pacienteService;
     @Autowired
     DomicilioService domicilioService;
 
@@ -30,7 +24,7 @@ public class PacienteController {
     public ResponseEntity<String> registar(@RequestBody Paciente p){
         ResponseEntity<String> respuesta = null;
 
-        if(pacienteservice.registrar(p) != null){
+        if(pacienteService.registrar(p) != null){
             respuesta = ResponseEntity.ok("El Registro fue creado");
         }else{
             respuesta = ResponseEntity.internalServerError().body("Error");
@@ -56,7 +50,7 @@ public class PacienteController {
     //mismo metodo pero con excepciones
    @DeleteMapping("/{id}")
    public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
-       pacienteservice.eliminar(id);
+       pacienteService.eliminar(id);
        return ResponseEntity.ok("eliminado");
    }
 
@@ -64,7 +58,7 @@ public class PacienteController {
     public ResponseEntity<String> actualizar(@RequestBody Paciente p){
         ResponseEntity<String> respuesta = null;
 
-        if(pacienteservice.registrar(p) != null){
+        if(pacienteService.registrar(p) != null){
             respuesta = ResponseEntity.ok("El Registro fue actualizado con Exito");
         }else{
             respuesta = ResponseEntity.internalServerError().body("Ooops");
@@ -73,18 +67,21 @@ public class PacienteController {
         return respuesta;
     }
 
-
-    @GetMapping("/{id}")
+   /* @GetMapping("/{id}")
     public Optional<Paciente> buscarPorId(@PathVariable Long id){
 
         return pacienteservice.buscarPorId(id);
+    }*/
+    //mismo metodo pero con excepciones
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorIs(Long id) throws ResourceNotFoundException {
+        return ResponseEntity.ok(pacienteService.buscarPorId(id));
     }
-
 
     @GetMapping("/consultarTodos")
     public ResponseEntity<List<PacienteDTO>> consultarTodos(){
 
-        return ResponseEntity.ok(pacienteservice.buscarTodos());
+        return ResponseEntity.ok(pacienteService.buscarTodos());
     }
 
 }

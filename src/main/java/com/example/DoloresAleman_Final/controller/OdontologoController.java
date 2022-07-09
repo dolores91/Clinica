@@ -1,19 +1,15 @@
 package com.example.DoloresAleman_Final.controller;
 
 import com.example.DoloresAleman_Final.Model.OdontologoDTO;
+import com.example.DoloresAleman_Final.exceptions.BadRequestException;
 import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Odontologo;
-import com.example.DoloresAleman_Final.persistence.repository.IOdontologoRepository;
 import com.example.DoloresAleman_Final.service.OdontologoService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/odontologos")
@@ -22,7 +18,6 @@ public class OdontologoController {
     protected final static Logger logger = Logger.getLogger(OdontologoController.class);
     @Autowired
     OdontologoService odontologoService;
-
 
     @PostMapping("/registrar")
     public ResponseEntity<String> registrar(@RequestBody Odontologo o){
@@ -36,7 +31,6 @@ public class OdontologoController {
 
         return respuesta;
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id)throws ResourceNotFoundException {
@@ -57,20 +51,21 @@ public class OdontologoController {
         return respuesta;
     }
 
-
+/*
     @GetMapping("/{id}")
     public Optional<Odontologo> buscarPorId(@PathVariable Long id){
 
         return odontologoService.buscarPorId(id);
+    }*/
+    //mismo metodo pero con excepciones
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorId(Long id) throws ResourceNotFoundException, BadRequestException {
+        return ResponseEntity.ok(odontologoService.buscarPorId(id));
     }
-
 
     @GetMapping("/consultarTodos")
     public ResponseEntity<List<OdontologoDTO>> consultarTodos(){
 
         return ResponseEntity.ok(odontologoService.buscarTodos());
     }
-
-
-
 }
