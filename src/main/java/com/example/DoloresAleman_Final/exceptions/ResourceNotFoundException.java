@@ -1,5 +1,4 @@
 package com.example.DoloresAleman_Final.exceptions;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

@@ -1,7 +1,5 @@
 package com.example.DoloresAleman_Final.Model;
-
 import com.example.DoloresAleman_Final.persistence.entity.Odontologo;
-
 import java.sql.Date;
 
 public class TurnoDTO {
@@ -9,6 +7,12 @@ public class TurnoDTO {
     private Date date;
     private Odontologo odontologo;
     private Paciente paciente;
+
+
+    public TurnoDTO(Odontologo odontologo, Paciente paciente) {
+        this.odontologo = odontologo;
+        this.paciente = paciente;
+    }
 
     public Long getId() {
         return id;

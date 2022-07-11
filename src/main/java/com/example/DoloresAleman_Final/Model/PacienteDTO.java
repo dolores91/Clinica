@@ -11,6 +11,12 @@ public class PacienteDTO {
     private Date fechaDeIngreso;
     private Domicilio domicilio;
 
+    public PacienteDTO(String nombre, String apellido, String email, String dni) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.dni = dni;
+    }
 
     public Long getId() {
         return id;

@@ -33,7 +33,6 @@ public class Paciente {
     private Set<Turno> turnos = new HashSet<>();
 
 
-
 // --------------------------------CONSTRUCTORES-------------------------------------------------
 
    /* public Paciente() {

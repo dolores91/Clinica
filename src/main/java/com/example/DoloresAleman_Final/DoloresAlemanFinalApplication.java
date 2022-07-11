@@ -1,6 +1,4 @@
 package com.example.DoloresAleman_Final;
-
-import org.apache.log4j.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

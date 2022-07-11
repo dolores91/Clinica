@@ -1,7 +1,6 @@
 package com.example.DoloresAleman_Final.persistence.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.log4j.Logger;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

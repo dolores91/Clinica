@@ -1,5 +1,4 @@
 package com.example.DoloresAleman_Final.controller;
-
 import com.example.DoloresAleman_Final.Model.PacienteDTO;
 import com.example.DoloresAleman_Final.exceptions.ResourceNotFoundException;
 import com.example.DoloresAleman_Final.persistence.entity.Paciente;

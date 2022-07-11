@@ -1,8 +1,5 @@
 package com.example.DoloresAleman_Final.persistence.entity;
-
-import com.example.DoloresAleman_Final.controller.OdontologoController;
 import org.apache.log4j.Logger;
-
 import javax.persistence.*;
 
 @Entity
